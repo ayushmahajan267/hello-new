@@ -32,19 +32,11 @@ pipeline {
                 }
             }
         }
-
-        stage('Run Docker Image') {
-            steps {
-                script {
-                    sh "docker run --rm ${IMAGE_NAME}:${IMAGE_TAG}"
-                }
-            }
-        }
     }
 
     post {
         success {
-            echo "Docker image built, pushed, and run successfully!"
+            echo "Docker image pushed: ${IMAGE_NAME}:${IMAGE_TAG}"
         }
         failure {
             echo "Pipeline failed. Check logs for details."
